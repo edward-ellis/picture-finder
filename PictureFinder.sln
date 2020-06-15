@@ -5,7 +5,13 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PictureFinder", "PictureFinder\PictureFinder.csproj", "{5E263AB3-3B34-44A7-9F39-E0A1BEB53F9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageAttributes", "ImageAtributes\ImageAttributes.csproj", "{301CBA1C-0645-4D9B-A59A-1339B21288CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageAttributes", "ImageAtributes\ImageAttributes.csproj", "{301CBA1C-0645-4D9B-A59A-1339B21288CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CC66BE3E-7990-4241-898E-CF5A0E46C3B7}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
