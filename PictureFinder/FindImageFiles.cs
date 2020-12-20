@@ -30,9 +30,10 @@ namespace PictureFinder
                 {
                     if (image.HasMinimumDimension(ImageConfiguration.MinimumDimension))
                     {
-                        list.Add(image.FileName, image);
-                        //Console.WriteLine($"{image.FileNameWithoutExtension} {image.WxHString}");
-                        //PrintTags(image);
+                        if (!list.ContainsKey(image.Key))
+                        {
+                            list.Add(image.Key, image);
+                        }
                     }
                 }
             }

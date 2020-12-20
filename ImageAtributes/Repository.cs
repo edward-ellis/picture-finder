@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography;
 using System.IO;
 
 namespace ImageAttributes
@@ -10,6 +11,7 @@ namespace ImageAttributes
         private Dictionary<string, string> _repository = new Dictionary<string, string>();
         private string _fileType;
         private FileInfo info;
+        public string CryptoHash { get; private set; }
         public string FileExtension { get; private set; }
         public string WxHString { get; private set; }
         public int Height { get; private set; }
@@ -19,11 +21,24 @@ namespace ImageAttributes
         {
             this.info = info;
             FileNameWithoutExtension = Path.GetFileNameWithoutExtension(info.Name);
+            CryptoHash = CalculateCryptoHash();
         }
 
         public void CopyTo(string destinationPath)
         {
             info.CopyTo(destinationPath);
+        }
+
+        private string CalculateCryptoHash()
+        {
+            byte[] myHash;
+            String hash = String.Empty;
+            using (var ha = MD5.Create())
+            using (var stream = info.OpenRead())
+                myHash = ha.ComputeHash(stream);
+            foreach (byte b in myHash) hash += b.ToString("x2").ToLower();
+
+            return hash;
         }
 
         public void SetAttribute(string attributeName, string attributeValue)
@@ -59,6 +74,11 @@ namespace ImageAttributes
             }
         }
 
+        public string Key
+        {
+            get { return CryptoHash; }
+        }
+
         public bool IsJpeg
         {
             get { return _fileType == "JPEG"; }
@@ -85,8 +105,7 @@ namespace ImageAttributes
         public bool Equals([AllowNull] Repository other)
         {
             bool result = false;
-            if ((FileNameWithoutExtension == other.FileNameWithoutExtension) &&
-                (info.Length == other.info.Length))
+            if ((Key == other.Key) && (info.Length == other.info.Length))
             {
                 result = true;
             }

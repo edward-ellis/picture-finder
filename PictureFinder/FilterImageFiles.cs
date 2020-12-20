@@ -11,13 +11,13 @@ namespace PictureFinder
             )
         {
             List<Repository> list = new List<Repository>();
-            foreach(string fileName in source.Keys)
+            foreach(string key in source.Keys)
             {
                 bool found = false;
-                Repository sourceRepository = source[fileName];
-                if (destination.ContainsKey(fileName))
+                Repository sourceRepository = source[key];
+                if (destination.ContainsKey(key))
                 {
-                    Repository destinationRepository = destination[fileName];
+                    Repository destinationRepository = destination[key];
                     if (sourceRepository.Equals(destinationRepository))
                     {
                         found = true;
