@@ -16,6 +16,9 @@ namespace PictureFinder
             {
                 Console.WriteLine($"{image.FileNameWithoutExtension} {image.WxHString}");
             }
+            int numNewImages = newImages.Count;
+            int totalImages = destination.Count + numNewImages;
+            Console.WriteLine($"Found {numNewImages} new images for a total of {totalImages} saved images.");
         }
     }
 }
