@@ -15,7 +15,15 @@ namespace PictureFinder
                 string destinationDirectory = Path.Join(myPicturesPath, image.WxHString);
                 Directory.CreateDirectory(destinationDirectory);
                 string destinationPath = Path.Join(destinationDirectory, image.FileName);
-                image.CopyTo(destinationPath);
+                try
+                {
+                    image.CopyTo(destinationPath);
+                }
+                catch (IOException originalException)
+                {
+                    string message = $"Copying image from {image.FileName} to {destinationPath}";
+                    throw new ApplicationException(message, originalException);
+                }
             }
         }
     }
