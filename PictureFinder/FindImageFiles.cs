@@ -7,21 +7,21 @@ namespace PictureFinder
 {
     public static class FindImageFiles
     {
-        public static IDictionary<string, Repository> EnumerateSpotlightImages()
+        public static RepositoryList EnumerateSpotlightImages()
         {
             DirectoryInfo spotlightDirectory = new DirectoryInfo(ImageConfiguration.SpotlightDataPath);
             return EnumerateFiles(spotlightDirectory);
         }
-        public static IDictionary<string, Repository> EnumerateRepositoryImages()
+        public static RepositoryList EnumerateRepositoryImages()
         {
             DirectoryInfo mySpotlightDirectory = new DirectoryInfo(ImageConfiguration.MyPicturesPath);
             Directory.CreateDirectory(mySpotlightDirectory.FullName);
             return EnumerateFiles(mySpotlightDirectory);
         }
 
-        private static IDictionary<string, Repository> EnumerateFiles(DirectoryInfo spotlightDirectory)
+        private static RepositoryList EnumerateFiles(DirectoryInfo spotlightDirectory)
         {
-            Dictionary<string, Repository> list = new Dictionary<string, Repository>();
+            RepositoryList list = new RepositoryList();
             IList<FileInfo> files = GetFilesRecursive(spotlightDirectory);
             foreach (FileInfo info in files)
             {

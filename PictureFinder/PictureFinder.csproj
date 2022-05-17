@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Simple-image-comparison\SimpleImageComparisonClassLibrary\SimpleImageComparisonClassLibrary.csproj" />
     <ProjectReference Include="..\ImageAtributes\ImageAttributes.csproj" />
   </ItemGroup>
 

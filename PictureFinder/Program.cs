@@ -8,8 +8,8 @@ namespace PictureFinder
     {
         static void Main(string[] args)
         {
-            IDictionary<string, Repository> source = FindImageFiles.EnumerateSpotlightImages();
-            IDictionary<string, Repository> destination = FindImageFiles.EnumerateRepositoryImages();
+            RepositoryList source = FindImageFiles.EnumerateSpotlightImages();
+            RepositoryList destination = FindImageFiles.EnumerateRepositoryImages();
             IList<Repository> newImages = FilterImageFiles.Filter(source, destination);
             CopyImageFiles.Copy(newImages);
             foreach (Repository image in newImages)

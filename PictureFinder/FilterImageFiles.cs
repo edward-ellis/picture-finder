@@ -1,4 +1,5 @@
-﻿using ImageAttributes;
+﻿using System;
+using ImageAttributes;
 using System.Collections.Generic;
 
 namespace PictureFinder
@@ -6,18 +7,17 @@ namespace PictureFinder
     public static class FilterImageFiles
     {
         public static IList<Repository> Filter(
-            IDictionary<string, Repository> source, 
-            IDictionary<string, Repository> destination
+            RepositoryList source,
+            RepositoryList destination
             )
         {
             List<Repository> list = new List<Repository>();
-            foreach(string key in source.Keys)
+            foreach(Repository sourceRepository in source.Values)
             {
+                Console.Write(".");
                 bool found = false;
-                Repository sourceRepository = source[key];
-                if (destination.ContainsKey(key))
+                foreach (Repository destinationRepository in destination.Values)
                 {
-                    Repository destinationRepository = destination[key];
                     if (sourceRepository.Equals(destinationRepository))
                     {
                         found = true;

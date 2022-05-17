@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.IO;
+using SimpleImageComparisonClassLibrary;
 
 namespace ImageAttributes
 {
@@ -104,12 +105,20 @@ namespace ImageAttributes
 
         public bool Equals([AllowNull] Repository other)
         {
-            bool result = false;
-            if ((Key == other.Key) && (info.Length == other.info.Length))
+            if (Height != other.Height)
             {
-                result = true;
+                return false;
             }
-            return result;
+            if (Width != other.Width)
+            {
+                return false;
+            }
+            int percentageDifference = (int)(ImageTool.GetPercentageDifference(info.FullName, other.info.FullName) * 100);
+            if (percentageDifference > 5)
+            {
+                return false;
+            }
+            return true;
         }
 
         public override bool Equals(object obj)
