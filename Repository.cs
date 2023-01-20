@@ -4,13 +4,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.IO;
 
-namespace ImageAttributes
+namespace PictureFinder
 {
     public class Repository : IEquatable<Repository>
     {
-        private Dictionary<string, string> _repository = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _repository = new Dictionary<string, string>();
         private string _fileType;
-        private FileInfo info;
+        private readonly FileInfo info;
         public string CryptoHash { get; private set; }
         public string FileExtension { get; private set; }
         public string WxHString { get; private set; }
@@ -102,7 +102,7 @@ namespace ImageAttributes
             FileExtension = string.Format(".{0}", fileExtension);
         }
 
-        public bool Equals([AllowNull] Repository other)
+        public bool Equals(Repository other)
         {
             bool result = false;
             if ((Key == other.Key) && (info.Length == other.info.Length))

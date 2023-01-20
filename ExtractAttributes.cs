@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace ImageAttributes
+namespace PictureFinder
 {
     public static class ExtractAttributes
     {
         public static Repository ExtractFromFile(FileInfo info)
         {
             Repository repository = new Repository(info);
-            string name = info.Name;
             try
             {
                 IEnumerable<MetadataExtractor.Directory> directories = ImageMetadataReader.ReadMetadata(info.FullName);
